@@ -16,6 +16,7 @@ import pickle
 import glob
 import re
 
+
 def get_args():
     parse = argparse.ArgumentParser(description='Chainer train')
     parse.add_argument('--batchsize','-b',type=int, default=100,
@@ -50,15 +51,14 @@ def log_report(log_trainer):
     return trainer
 
 def main():
-    args = setup_parse()
-    print(args.process)
+    args = get_args()
 
     print('# GPU: {}'.format(args.gpu))
     print('# Minibatch-size: {}'.format(args.batchsize))
     print('# epoch: {}'.format(args.epoch))
 
+    n_class = args.classes
     dataset = ChainerImage(args.img)
-    n_class = dataset.n_class
     train, test = dataset.train_dataset()
     print('# Training Images:',len(train))
     print('# Test Images:',len(test))
@@ -66,9 +66,9 @@ def main():
 
     
     model = L.Classifier(NIN(n_class))
-    if args.name = "Alex":
+    if args.name == "Alex":
         model = L.Classifier(Alex(n_class))
-    elif args.name = "AlexLike":
+    elif args.name == "AlexLike":
         model = L.Classifier(AlexLike(n_class))
 
     if args.gpu >= 0:
@@ -98,7 +98,7 @@ def main():
     
     date = str(datetime.datetime.today().strftime("%Y_%m_%d_%H_%M"))
     info = date + "_class_" + str(n_class)+ "_epoch_" + str(args.epoch)
-    if args.gray
+    if args.gray:
         info = args.name + "_gray_" + info
     else:
         info = args.name + "_color_" + info
