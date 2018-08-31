@@ -1,7 +1,7 @@
 rename.py
 tmp.py
 __pycache__/*
-img/*
+imgs/*
 model/*
 result/*
 !.gitkeep
